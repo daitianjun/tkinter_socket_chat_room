@@ -5,7 +5,7 @@ import tkinter.messagebox as msg
 import socket
 import threading
 from tkinter import ttk
-
+'''客户端1'''
 class Main(tk.Tk):
     def __init__(self, name, client):
         super(Main, self).__init__()
@@ -45,7 +45,7 @@ class Main(tk.Tk):
         self.conent = ttk.Entry(self)
         self.conent.place(relx=0.02,rely=0.85)
         self.btn_send = ttk.Button(self, text='发送',
-                                  command=self.send_message)
+                                  command=lambda :self.send_message(self.btn_send))
         self.btn_send.place(relx=0.02,rely=0.9)
         self.conent.bind('<Return>', self.send_message)
         # 在线用户
@@ -115,13 +115,11 @@ class Login(tk.Tk):
         label = tk.Label(self, text='请输入聊天昵称:')
         label.grid(row=1, column=1,padx=20,pady=100)
         self.name = ttk.Entry(self)
-        self.name.bind('<Return>', self.check)
         self.name.grid(row=1, column=2)
-
         btn = ttk.Button(self, text='登录', command=self.check)
         btn.grid(row=1, column=3)
 
-    def check(self,event):
+    def check(self):
         name = self.name.get()
         if name == '':
             msg.showerror('错误', '昵称不能为空!')
